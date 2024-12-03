@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.29)
-project(Advent-Of-Code-2024 VERSION 0.0.2)
+project(Advent-Of-Code-2024 VERSION 0.0.3)
 
 option(ENABLE_ADDRSAN "Enable the address sanitizer" OFF)
 option(ENABLE_UBSAN "Enable the ub sanitizer" OFF)
@@ -14,8 +14,8 @@ file(GLOB_RECURSE PROJECT_BUILD_FILES "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
 
 add_executable(Advent-Of-Code-2024 ${PROJECT_BUILD_FILES})
 
-target_compile_options(Advent-Of-Code-2024 PRIVATE -Wall -Wextra -Weverything -Wpedantic -Wno-comment)
-target_link_options(Advent-Of-Code-2024 PRIVATE -Wall -Wextra -Weverything -Wpedantic -Wno-comment)
+target_compile_options(Advent-Of-Code-2024 PRIVATE -Wall -Wextra -Wpedantic -Wno-comment)
+target_link_options(Advent-Of-Code-2024 PRIVATE -Wall -Wextra -Wpedantic -Wno-comment)
 
 target_link_libraries(Advent-Of-Code-2024 PRIVATE BLT)
 
