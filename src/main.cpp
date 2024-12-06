@@ -3,6 +3,9 @@
 #include <day1.h>
 #include <day2.h>
 #include <day3.h>
+#include <day4.h>
+#include <day5.h>
+#include <day6.h>
 
 int main(const int argc, const char** argv)
 {
@@ -30,6 +33,15 @@ int main(const int argc, const char** argv)
         run_day3();
         break;
     case 4:
+        run_day4();
+        break;
+    case 5:
+        run_day5();
+        break;
+    case 6:
+        run_day6();
+        break;
+    case 7:
         break;
     default:
         BLT_INFO("%d is not a day", day);

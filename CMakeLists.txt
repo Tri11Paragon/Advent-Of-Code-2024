@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.29)
-project(Advent-Of-Code-2024 VERSION 0.0.3)
+project(Advent-Of-Code-2024 VERSION 0.0.4)
 
 option(ENABLE_ADDRSAN "Enable the address sanitizer" OFF)
 option(ENABLE_UBSAN "Enable the ub sanitizer" OFF)
