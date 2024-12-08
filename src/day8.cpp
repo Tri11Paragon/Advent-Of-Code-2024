@@ -86,9 +86,8 @@ namespace day8
             {
                 if (i == x && y == j)
                     continue;
-                const auto current = get(i, j);
 
-                if (compare == current)
+                if (compare == get(i, j))
                 {
                     const int dist_x = i - x;
                     const int dist_y = j - y;
