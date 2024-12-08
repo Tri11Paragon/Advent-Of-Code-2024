@@ -8,6 +8,7 @@
 #include <day6.h>
 #include <day7.h>
 #include <day8.h>
+#include <day9.h>
 
 int main(const int argc, const char** argv)
 {
@@ -48,6 +49,9 @@ int main(const int argc, const char** argv)
         break;
     case 8:
         run_day8();
+        break;
+    case 9:
+        run_day9();
         break;
     default:
         BLT_INFO("%d is not a day", day);
