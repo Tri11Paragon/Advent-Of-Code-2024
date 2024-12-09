@@ -16,16 +16,18 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 #include <days.h>
+#include <blt/math/log_util.h>
 #include <vector>
 #include <limits>
 #include <algorithm>
 #include <blt/fs/loader.h>
+#include <blt/iterator/enumerate.h>
+#include <blt/iterator/iterator.h>
 #include <blt/iterator/zip.h>
 #include <blt/std/hashmap.h>
+#include <blt/math/vectors.h>
+#include <blt/std/assert.h>
 
-// this file was broken by incompetence
-
-void run_day1()
+void run_day19()
 {
-
 }

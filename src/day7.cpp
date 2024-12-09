@@ -15,7 +15,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-#include <day7.h>
+#include <days.h>
 #include <blt/math/log_util.h>
 #include <vector>
 #include <limits>

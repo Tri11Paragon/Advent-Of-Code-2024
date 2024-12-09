@@ -1,14 +1,6 @@
 #include <blt/parse/argparse.h>
 #include <blt/std/logging.h>
-#include <day1.h>
-#include <day2.h>
-#include <day3.h>
-#include <day4.h>
-#include <day5.h>
-#include <day6.h>
-#include <day7.h>
-#include <day8.h>
-#include <day9.h>
+#include <days.h>
 
 int main(const int argc, const char** argv)
 {
@@ -52,6 +44,51 @@ int main(const int argc, const char** argv)
         break;
     case 9:
         run_day9();
+        break;
+    case 10:
+        run_day10();
+        break;
+    case 11:
+        run_day11();
+        break;
+    case 12:
+        run_day12();
+        break;
+    case 13:
+        run_day13();
+        break;
+    case 14:
+        run_day14();
+        break;
+    case 15:
+        run_day15();
+        break;
+    case 16:
+        run_day16();
+        break;
+    case 17:
+        run_day17();
+        break;
+    case 18:
+        run_day18();
+        break;
+    case 19:
+        run_day19();
+        break;
+    case 20:
+        run_day20();
+        break;
+    case 21:
+        run_day21();
+        break;
+    case 22:
+        run_day22();
+        break;
+    case 23:
+        run_day23();
+        break;
+    case 24:
+        run_day24();
         break;
     default:
         BLT_INFO("%d is not a day", day);

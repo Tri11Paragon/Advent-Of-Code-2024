@@ -1,5 +1,5 @@
-#pragma once
 /*
+ *  <Short Description>
  *  Copyright (C) 2024  Brett Terpstra
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -15,10 +15,19 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+#include <days.h>
+#include <blt/math/log_util.h>
+#include <vector>
+#include <limits>
+#include <algorithm>
+#include <blt/fs/loader.h>
+#include <blt/iterator/enumerate.h>
+#include <blt/iterator/iterator.h>
+#include <blt/iterator/zip.h>
+#include <blt/std/hashmap.h>
+#include <blt/math/vectors.h>
+#include <blt/std/assert.h>
 
-#ifndef DAY6_H
-#define DAY6_H
-
-void run_day6();
-
-#endif //DAY6_H
+void run_day17()
+{
+}
