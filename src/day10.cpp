@@ -28,6 +28,76 @@
 #include <blt/math/vectors.h>
 #include <blt/std/assert.h>
 
+
+
+namespace day10
+{
+
+    std::vector<std::vector<int>> topo;
+    blt::hashset_t<blt::vec2i> positions;
+    blt::i32 width, height;
+    int rating = 0;
+
+    void search(std::vector<std::vector<int>>& vec, const blt::i32 x, const blt::i32 y)
+    {
+        const auto val = topo[y][x];
+        // BLT_TRACE(val);
+        if (val == 9)
+        {
+            rating++;
+            positions.insert(blt::vec2i{x, y});
+            return;
+        }
+        if (x + 1 < width && topo[y][x + 1] - val == 1)
+            search(vec, x + 1, y);
+        if (x - 1 >= 0 && topo[y][x - 1] - val == 1)
+            search(vec, x - 1, y);
+        if (y + 1 < height && topo[y + 1][x] - val == 1)
+            search(vec, x, y+1);
+        if (y - 1 >= 0 && topo[y - 1][x] - val == 1)
+            search(vec, x, y-1);
+    }
+
+    int run_search(const blt::i32 x, const blt::i32 y)
+    {
+        auto copy = topo;
+        search(copy, x, y);
+        const auto total = positions.size();
+        positions.clear();
+        return static_cast<int>(total);
+    }
+
+}
+
 void run_day10()
 {
+    using namespace day10;
+
+    auto file = blt::fs::getLinesFromFile("../problems/day10/input");
+
+    for (const auto& line : file)
+    {
+        topo.emplace_back();
+        for (const auto c : line)
+            topo.back().push_back(c - '0');
+    }
+
+    height = static_cast<blt::i32>(topo.size());
+    width = static_cast<blt::i32>(topo.begin()->size());
+
+    int total = 0;
+    for (blt::i32 j = 0; j < height; j++)
+    {
+        for (blt::i32 i = 0; i < width; i++)
+        {
+            if (topo[j][i] == 0)
+            {
+                total += run_search(i, j);
+            }
+        }
+    }
+
+    BLT_TRACE(total);
+    BLT_TRACE(rating);
+
 }
