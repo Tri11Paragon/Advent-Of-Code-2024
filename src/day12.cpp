@@ -71,10 +71,32 @@ namespace day12
         for (int j = 0; j < height; j++)
         {
             for (int i = 0; i < width; i++)
-                std::cout << t[j][i] << " ";
+                std::cout << t[j][i] << "";
             std::cout << std::endl;
         }
     }
+
+    struct region
+    {
+        blt::vec2i start, end;
+    };
+
+    void expand(region& region, char prev)
+    {
+        for (const auto& v : {blt::vec2i{-1, 0}, blt::vec2i{0, -1}})
+        {
+            const auto n_pos = region.start + v;
+            if (plots[n_pos.y()][n_pos.x()] == prev)
+                region.start = n_pos;
+        }
+        for (const auto& v : {blt::vec2i{1, 0}, blt::vec2i{0, 1}})
+        {
+            const auto n_pos = region.end + v;
+            if (plots[n_pos.y()][n_pos.x()] == prev)
+                region.end = n_pos;
+        }
+    }
+
 }
 
 void run_day12()
@@ -188,7 +210,6 @@ void run_day12()
                 else if ((y_pos && (x_pos && !x_neg) && !y_neg) || (y_pos && (!x_pos && x_neg) && !y_neg))
                     edges++;
 
-
                 if (x_neg && !x_pos && !y_pos && !y_neg || !x_neg && x_pos && !y_pos && !y_neg)
                     edges+=2;
                 if (!x_neg && !x_pos && y_pos && !y_neg || !x_neg && !x_pos && !y_pos && y_neg)
@@ -206,5 +227,6 @@ void run_day12()
             total2 += edges * area;
         }
     }
+    print(perimeters);
     BLT_TRACE(total2);
 }
