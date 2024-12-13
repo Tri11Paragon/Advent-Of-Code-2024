@@ -96,7 +96,6 @@ namespace day12
                 region.end = n_pos;
         }
     }
-
 }
 
 void run_day12()
@@ -173,6 +172,7 @@ void run_day12()
                     continue;
 
                 bool x_pos = false, x_neg = false, y_pos = false, y_neg = false;
+                bool x_y_pos = false, x_y_neg = false, x_pos_y_neg = false, x_neg_y_pos = false;
 
                 {
                     const auto v = get(plots, pos.x() + 1, pos.y());
@@ -190,6 +190,22 @@ void run_day12()
                     const auto v = get(plots, pos.x(), pos.y() - 1);
                     y_neg = v && v->get() == cur;
                 }
+                {
+                    const auto v = get(plots, pos.x() + 1, pos.y() + 1);
+                    x_y_pos = v && v->get() != cur;
+                }
+                {
+                    const auto v = get(plots, pos.x() - 1, pos.y() - 1);
+                    x_y_neg = v && v->get() != cur;
+                }
+                {
+                    const auto v = get(plots, pos.x() + 1, pos.y() - 1);
+                    x_pos_y_neg = v && v->get() != cur;
+                }
+                {
+                    const auto v = get(plots, pos.x() - 1, pos.y() + 1);
+                    x_neg_y_pos = v && v->get() != cur;
+                }
 
                 if (x_pos)
                     pos_to_check.push({pos.x() + 1, pos.y()});
@@ -201,19 +217,59 @@ void run_day12()
                     pos_to_check.push({pos.x(), pos.y() - 1});
 
                 auto b4 = edges;
-                if ((x_pos && (y_pos && !y_neg) && !x_neg) || (x_pos && (!y_pos && y_neg) && !x_neg))
+                if (x_pos && (y_pos && !y_neg))
+                {
                     edges++;
-                else if ((y_neg && (x_pos && !x_neg) && !y_pos) || (y_neg && (!x_pos && x_neg) && !y_pos))
+                    if (x_y_pos)
+                        edges++;
+                }
+                if (x_pos && (!y_pos && y_neg))
+                {
                     edges++;
-                else if ((x_neg && (y_pos && !y_neg) && !x_pos) || (x_neg && (!y_pos && y_neg) && !x_pos))
+                    // if (x_pos_y_neg)
+                    //     edges++;
+                }
+                if (y_neg && (x_pos && !x_neg))
+                {
                     edges++;
-                else if ((y_pos && (x_pos && !x_neg) && !y_neg) || (y_pos && (!x_pos && x_neg) && !y_neg))
+                    // if (x_pos_y_neg)
+                    //     edges++;
+                }
+                if (y_neg && (!x_pos && x_neg))
+                {
                     edges++;
+                    // if (x_y_neg)
+                    //     edges++;
+                }
+                if (x_neg && (y_pos && !y_neg))
+                {
+                    edges++;
+                    // if (x_neg_y_pos)
+                    //     edges++;
+                }
+                if (x_neg && (!y_pos && y_neg))
+                {
+                    edges++;
+                    // if (x_y_neg)
+                    //     edges++;
+                }
+                if (y_pos && (x_pos && !x_neg))
+                {
+                    edges++;
+                    if (x_y_pos)
+                        edges++;
+                }
+                if (y_pos && (!x_pos && x_neg))
+                {
+                    edges++;
+                    // if (x_neg_y_pos)
+                    //     edges++;
+                }
 
-                if (x_neg && !x_pos && !y_pos && !y_neg || !x_neg && x_pos && !y_pos && !y_neg)
-                    edges+=2;
-                if (!x_neg && !x_pos && y_pos && !y_neg || !x_neg && !x_pos && !y_pos && y_neg)
-                    edges+=2;
+                if ((x_neg && !x_pos && !y_pos && !y_neg) || (!x_neg && x_pos && !y_pos && !y_neg))
+                    edges += 2;
+                if ((!x_neg && !x_pos && y_pos && !y_neg) || (!x_neg && !x_pos && !y_pos && y_neg))
+                    edges += 2;
                 if (!x_neg && !x_pos && !y_pos && !y_neg)
                     edges += 4;
 
@@ -221,12 +277,10 @@ void run_day12()
 
 
                 visited_side.insert(pos);
-
             }
             BLT_TRACE("For %c do %d edges with %d area", cur, edges, area);
             total2 += edges * area;
         }
     }
-    print(perimeters);
     BLT_TRACE(total2);
 }
